@@ -1,0 +1,152 @@
+:root {
+    --primary-color: #B87384;
+    /* Main branding color (like "Caramella" text) */
+    --SoftBackground-color: #F8E6E6;
+    /*	Background or section color*/
+    --AccentPink-color: #C99CA8;
+    /*For buttons, hover effects, details*/
+    --NeutralTaupe-color: #9E8C84;
+    /*Used like the needle color in the logo*/
+    --LightCream-color: #FFF7F7;
+    /*Optional lighter background or card areas*/
+    --Text-color: #804D55;
+    /*For headings, darker text*/
+    --Highlight-color: #E3AAB2;
+    /*For small highlights, secondary buttons*/
+}
+.navbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px 30px;
+  position: fixed;
+  z-index: 100;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo img {
+  width: 40px;
+}
+.navbar .logo h1{
+    font-size: 26px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.navbar .links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .links button {
+  background-color: transparent;
+  border: none;
+  color: var(--Text-color);
+  font-size: 22px;
+  position: relative;
+  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.navbar .links button::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar .links .active button {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.navbar .links .active button::after {
+  width: 100%;
+  opacity: 1;
+}
+
+
+.navbar .cart {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.navbar .menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Hide in desktop, show in mobile */
+.navbar .cart-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+    .navbar .logo h1{
+        font-size: 22px;
+    }
+    .navbar .logo img{
+        width: 30px;
+    }
+  .navbar .links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background: var(--LightCream-color);
+    padding: 10px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+.navbar .links button{
+    font-size: 18px;
+}
+  .navbar .links.show {
+    display: flex;
+  }
+
+  .navbar .menu-icon {
+    display: block;
+    color: var(--Text-color);
+    font-size: 22px;
+  }
+
+ .navbar .cart.desktop {
+    display: none;
+  }
+
+  .navbar .cart-mobile {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--Text-color);
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 5px;
+
+  }
+
+ 
+
+  .navbar .logo h1 {
+    font-size: 1.1rem;
+  }
+}

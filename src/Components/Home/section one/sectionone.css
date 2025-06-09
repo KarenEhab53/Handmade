@@ -1,0 +1,119 @@
+.hero-slider {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+:root {
+    --primary-color: #B87384;
+    /* Main branding color (like "Caramella" text) */
+    --SoftBackground-color: rgb(248, 230, 230);
+    /*	Background or section color*/
+    --AccentPink-color: rgb(201, 156, 168);
+    /*For buttons, hover effects, details*/
+    --NeutralTaupe-color: #9E8C84;
+    /*Used like the needle color in the logo*/
+    --LightCream-color: rgb(255, 247, 247);
+    /*Optional lighter background or card areas*/
+    --Text-color: hwb(351 30% 50%);
+    /*For headings, darker text*/
+    --Highlight-color: rgb(227, 170, 178);
+    /*For small highlights, secondary buttons*/
+}
+.swiper-button-next,
+.swiper-button-prev
+{
+    color: var(--Text-color);
+}
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.slide-content img {
+  width: 100%;
+  height: 100%;
+  object-fit:fill;
+  display: block;
+}
+
+/* Colored overlay */
+.slide-content .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 247, 247, 0.5); /* var(--primary-color) with transparency */
+  z-index: 1;
+}
+
+/* Text on slide */
+.slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+ color: #B87384;
+  text-shadow: 0 0 5px #B87384, 0 0 10px #B87384, 0 0 15px #B87384;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  
+}
+.slide-text h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.slide-text p {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--Text-color);
+}
+.slide-content .buttons{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+.buttons button {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  border-radius:15px ;
+  width: 200px;
+  color: var(--primary-color);
+  transition: all 1s ease-in-out;
+}
+.buttons button:hover{
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 1s ease-in-out;
+}
+@media (max-width: 426px) {
+    .swiper-button-next,
+.swiper-button-prev{
+   display: none;
+}
+.slide-text h2{
+font-size: 30px;
+}
+.slide-text p{
+    font-size: 18px;
+}
+.buttons button{
+    width: 170px;
+}
+}

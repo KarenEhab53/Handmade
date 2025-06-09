@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Playfair+Display:wght@400;600&display=swap');
+
+:root {
+    --primary-color: #B87384;
+    /* Main branding color (like "Caramella" text) */
+    --SoftBackground-color: #F8E6E6;
+    /*	Background or section color*/
+    --AccentPink-color: #C99CA8;
+    /*For buttons, hover effects, details*/
+    --NeutralTaupe-color: #9E8C84;
+    /*Used like the needle color in the logo*/
+    --LightCream-color: #FFF7F7;
+    /*Optional lighter background or card areas*/
+    --Text-color: #804D55;
+    /*For headings, darker text*/
+    --Highlight-color: #E3AAB2;
+    /*For small highlights, secondary buttons*/
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--LightCream-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 2px solid var(--LightCream-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--AccentPink-color);
+}
+
+* {
+  font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--LightCream-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
