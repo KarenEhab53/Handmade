@@ -15,6 +15,13 @@
     /*For headings, darker text*/
     --Highlight-color: #E3AAB2;
     /*For small highlights, secondary buttons*/
+    --DustyRose-color: #D8A1A7; /* Muted pink for soft accents */
+  --Blush-color: #F5D1D6;     /* Lighter pink for hover or subtle backgrounds */
+  --RoseGold-color: #CFA2A2;  /* Slightly metallic feel for borders/buttons */
+  --DeepTaupe-color: #7C6660; /* Darker taupe for depth */
+  --WarmBeige-color: #EFD9D2; /* Light beige for gentle sections */
+  --SoftCoral-color: #ECA4A4; /* For alerts, badges or CTA hovers */
+  --Shadow-color: rgba(128, 77, 85, 0.15); /* Soft text/card shadow */
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +51,7 @@
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--LightCream-color);
 }
+
 
 a {
     text-decoration: none;

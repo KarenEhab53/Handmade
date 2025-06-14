@@ -35,13 +35,14 @@
   width: 40px;
 }
 .navbar .logo h1{
-    font-size: 26px;
+    font-size: 24px;
     color: var(--primary-color);
     font-weight: bold;
 }
 .navbar .links {
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  width:40%;
 }
 
 .navbar .links button {
@@ -122,9 +123,10 @@
   }
 
   .navbar .menu-icon {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--Text-color);
-    font-size: 22px;
   }
 
  .navbar .cart.desktop {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './navbar.css';
 import logo from '../../assets/logo_circular.png';
-import { NavLink } from "react-router-dom"; // <-- use NavLink here
+import { Link, NavLink } from "react-router-dom"; // <-- use NavLink here
 import { RiShoppingCartLine } from "react-icons/ri";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 
@@ -10,10 +10,10 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="logo">
+      <Link to='/'><div className="logo">
         <img src={logo} alt="Caramella Logo" />
         <h1>Caramella Handmade</h1>
-      </div>
+      </div></Link>
 
       <div className={`links ${isMobileMenuOpen ? 'show' : ''}`}>
         <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""} onClick={() => setMobileMenuOpen(false)}>

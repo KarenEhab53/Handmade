@@ -1,0 +1,31 @@
+.features-section{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 50px;
+    padding:80px 0;
+      background-color: var(--LightCream-color);
+
+}
+.features-section .card{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    max-width: 300px;
+}
+.features-section .card .card-id{
+    color: var(--primary-color);
+    font-size: 18px;
+
+}
+.features-section .card .card-title{
+    color: var(--Text-color);
+    font-weight: bold;
+}
+.features-section .card .card-desc{
+    color: var(--Text-color);
+}
+

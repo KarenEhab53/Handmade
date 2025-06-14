@@ -1,0 +1,265 @@
+:root {
+  --primary-color: #B87384;
+  --SoftBackground-color: #F8E6E6;
+  --AccentPink-color: #C99CA8;
+  --NeutralTaupe-color: #9E8C84;
+  --LightCream-color: #FFF7F7;
+  --Text-color: #804D55;
+  --Highlight-color: #E3AAB2;
+  --DustyRose-color: #D8A1A7;
+  --Blush-color: #F5D1D6;
+  --RoseGold-color: #CFA2A2;
+  --DeepTaupe-color: #7C6660;
+  --WarmBeige-color: #EFD9D2;
+  --SoftCoral-color: #ECA4A4;
+  --Shadow-color: rgba(128, 77, 85, 0.15);
+}
+
+.contact {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--LightCream-color);
+  color: var(--Text-color);
+  padding-bottom: 50px;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.6);
+}
+
+.image-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.contact-container .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.contact-container .text h1 {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contact-container .text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Area */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px var(--Shadow-color);
+  padding: 40px;
+  margin: 40px 30px;
+}
+
+.data {
+  flex: 1 1 300px;
+}
+
+.data h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.data p,
+.data label,
+.contact-info {
+  color: var(--Text-color);
+  line-height: 1.6;
+}
+
+.data label {
+  font-weight: 600;
+  margin-top: 20px;
+  display: block;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-links a {
+  font-size: 22px;
+  color: var(--AccentPink-color);
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+}
+
+.line {
+  height: 1px;
+  background: var(--Blush-color);
+  margin: 20px 0;
+}
+
+/* Form Styling */
+form {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--RoseGold-color);
+  background-color: #fff;
+  margin-top: 5px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--AccentPink-color);
+  box-shadow: 0 0 5px var(--Highlight-color);
+}
+
+form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+form input[type="submit"] {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+  background-color: var(--SoftCoral-color);
+}
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid var(--RoseGold-color);
+  width: fit-content;
+}
+
+.upload-btn:hover {
+  background-color: var(--AccentPink-color);
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: var(--Text-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container,
+  .form {
+    flex-direction: column;
+  }
+
+  .contact-container .text h1 {
+    font-size: 1.8rem;
+  }
+
+  .form {
+    padding: 20px;
+    margin: 20px;
+  }
+}
+@media (max-width:426px)
+{
+    .contact .contact-container .text{
+        width: 70%;
+    }
+    .form .data{
+        width: 100%;
+    }
+    .contact .contact-container h1,
+    .form .data h1{
+        font-size: 28px;
+    }
+    .contact .contact-container p{
+        font-size: 14px;
+    }
+       .contact .data .contact-info p{
+font-size: 12px;
+    }
+}

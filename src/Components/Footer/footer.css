@@ -1,0 +1,102 @@
+
+.footer {
+  background-color: var(--LightCream-color);
+  color: var(--Text-color);
+  padding: 60px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+}
+
+.footer .data {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer .data h2 {
+  color: var(--primary-color);
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.footer .data p {
+  max-width: 400px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: var(--DeepTaupe-color);
+}
+
+.footer .secondsection ul,
+.footer .sectionthree ul {
+  list-style: none;
+  padding: 0;
+  font-size: 16px;
+}
+
+.footer .secondsection ul li,
+.footer .sectionthree ul li {
+  margin-bottom: 10px;
+}
+
+.footer .secondsection ul li a {
+  color: var(--Text-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .secondsection ul li a:hover {
+  color: var(--AccentPink-color);
+}
+
+.footer .copyright {
+  border-top: 1px solid var(--primary-color);
+  text-align: center;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer .copyright p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  margin: 0 8px;
+  color: var(--primary-color);
+  font-size: 20px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: var(--SoftCoral-color);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .footer .data {
+    flex-direction: column;
+  }
+
+  .footer .data p {
+    max-width: 100%;
+  }
+
+  .footer .secondsection ul li,
+  .footer .sectionthree ul li {
+    font-size: 15px;
+  }
+  .footer .copyright{
+    flex-direction: column;
+  }
+}

@@ -4,22 +4,6 @@
   overflow: hidden;
   position: relative;
 }
-:root {
-    --primary-color: #B87384;
-    /* Main branding color (like "Caramella" text) */
-    --SoftBackground-color: rgb(248, 230, 230);
-    /*	Background or section color*/
-    --AccentPink-color: rgb(201, 156, 168);
-    /*For buttons, hover effects, details*/
-    --NeutralTaupe-color: #9E8C84;
-    /*Used like the needle color in the logo*/
-    --LightCream-color: rgb(255, 247, 247);
-    /*Optional lighter background or card areas*/
-    --Text-color: hwb(351 30% 50%);
-    /*For headings, darker text*/
-    --Highlight-color: rgb(227, 170, 178);
-    /*For small highlights, secondary buttons*/
-}
 .swiper-button-next,
 .swiper-button-prev
 {
@@ -34,8 +18,9 @@
 .slide-content img {
   width: 100%;
   height: 100%;
-  object-fit:fill;
-  display: block;
+background-repeat: no-repeat;
+background-position: center top;
+background-size: cover;  display: block;
 }
 
 /* Colored overlay */
@@ -45,12 +30,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 247, 247, 0.5); /* var(--primary-color) with transparency */
+background-color: rgba(239, 217, 210, 0.4); /* Warm Beige */
   z-index: 1;
 }
 
 /* Text on slide */
 .slide-text {
+  backdrop-filter: blur(2px);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -88,9 +74,10 @@
 }
 .buttons button {
   font-family: 'Work Sans', sans-serif;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 1rem;
-  border: 1px solid var(--primary-color);
+
+  border: 2px solid var(--primary-color);
   padding: 10px;
   border-radius:15px ;
   width: 200px;

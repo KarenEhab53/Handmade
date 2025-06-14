@@ -1,0 +1,97 @@
+:root {
+    --primary-color: #B87384;
+    /* Main branding color (like "Caramella" text) */
+    --SoftBackground-color: #F8E6E6;
+    /*	Background or section color*/
+    --AccentPink-color: #C99CA8;
+    /*For buttons, hover effects, details*/
+    --NeutralTaupe-color: #9E8C84;
+    /*Used like the needle color in the logo*/
+    --LightCream-color: #FFF7F7;
+    /*Optional lighter background or card areas*/
+    --Text-color: #804D55;
+    /*For headings, darker text*/
+    --Highlight-color: #E3AAB2;
+    /*For small highlights, secondary buttons*/
+    --DustyRose-color: #D8A1A7; /* Muted pink for soft accents */
+  --Blush-color: #F5D1D6;     /* Lighter pink for hover or subtle backgrounds */
+  --RoseGold-color: #CFA2A2;  /* Slightly metallic feel for borders/buttons */
+  --DeepTaupe-color: #7C6660; /* Darker taupe for depth */
+  --WarmBeige-color: #EFD9D2; /* Light beige for gentle sections */
+  --SoftCoral-color: #ECA4A4; /* For alerts, badges or CTA hovers */
+  --Shadow-color: rgba(128, 77, 85, 0.15); /* Soft text/card shadow */
+}
+.overview{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    justify-content: center;
+    gap: 50px;
+}
+.overview .images img{
+    width: 500px;
+    border-radius:35% 35% 2% 2%;
+    height: 500px;
+}
+.overview .text{
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        justify-content: center;
+        align-items: start;
+        gap: 15px;
+
+}
+.overview .text h2{
+      font-family: 'Quicksand', sans-serif;
+      color: var(--Text-color);
+      font-weight: 400;
+      font-size: 26px;
+
+}
+.overview .text h1{
+      font-family: 'Playfair Display', serif;
+color: var(--Text-color);
+text-shadow: var(--Shadow-color);
+font-weight: bold;
+font-size: 32px;
+}
+.overview .text p{
+      font-family: 'Poppins', sans-serif;
+color: var(--Text-color);
+font-size: 18px;
+}
+@media (max-width:426px){
+    .overview{
+        gap: 20px;
+    }
+    .overview .images img{
+        width: 300px;
+        height: 300px;
+    }
+    .overview .text{
+        align-items: center;
+        text-align: center;
+    }
+}
+@media (max-width:1024px){
+    .overview .text{
+        width: 300px;
+    }
+    .overview .images img{
+        width: 300px;
+        height: 350px;
+    }
+    .overview .text h1{
+        font-size: 22px;
+    }
+    .overview .text h2{
+        font-size: 18px;
+    }
+    .overview .text p{
+        font-size: 14px;
+    }
+}

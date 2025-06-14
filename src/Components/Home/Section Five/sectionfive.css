@@ -1,0 +1,84 @@
+.testimonial-section {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--Text-color);
+}
+
+.testimonial-section .subtitle {
+  color: var(--Highlight-color);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.testimonial-section .title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--Text-color);
+}
+
+.testimonial-section .description {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-size: 16px;
+  color: var(--DeepTaupe-color);
+}
+
+.testimonial-section .cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.testimonial-section .cards .card {
+  background-color: var(--Blush-color);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 350px;
+  box-shadow: 0 4px 10px var(--Shadow-color);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-section .card:hover {
+  transform: translateY(-5px);
+}
+
+.stars {
+  color: var(--SoftCoral-color);
+  margin-bottom: 15px;
+}
+
+.feedback {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--DeepTaupe-color);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--RoseGold-color);
+}
+
+.user h4 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--Text-color);
+}
+
+.user span {
+  font-size: 14px;
+  color: var(--NeutralTaupe-color);
+}

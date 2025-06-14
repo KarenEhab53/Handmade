@@ -10,6 +10,7 @@ import Contact from './Pages/Contact/Contact'
 import Footer from './Components/Footer/Footer'
 import Admindashboard from './Pages/AdminDashboard/Admindashboard'
 import UserProfile from './Pages/User Profile/UserProfile'
+import SingleProduct from './Components/Single Product/SingleProduct'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={<Auth/>}/>
         <Route path='/shop' element={<Shop/>}/>
+        <Route path='/shop/:id' element={<SingleProduct/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/admindashboard' element={<Admindashboard/>}>
