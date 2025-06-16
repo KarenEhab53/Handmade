@@ -3,12 +3,19 @@ import './shop.css';
 import { ProductContext } from "../../Context/Product";
 import { useNavigate, useLocation } from "react-router-dom";
 import img from '../../assets/WhatsApp Image 2025-06-08 at 15.17.27_8cec4d03.jpg';
+import { CartContext } from "../../Context/CartContext";
 
 const Shop = () => {
   const { products, loading, error } = useContext(ProductContext);
+  const {
+    cartItems,
+    addToCart,
+    increaseQty,
+    decreaseQty
+  } = useContext(CartContext); // ✅
+
   const navigate = useNavigate();
   const location = useLocation();
-
   const queryParams = new URLSearchParams(location.search);
   const initialCategory = queryParams.get("category") || "All";
   const [category, setCategory] = useState(initialCategory);
@@ -27,6 +34,11 @@ const Shop = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
+  const getCartQuantity = (id) => {
+    const item = cartItems.find((item) => item.id === id);
+    return item ? item.quantity : 0;
+  };
+
   return (
     <div className="shop">
       <p>Our Categories</p>
@@ -37,7 +49,7 @@ const Shop = () => {
             key={item}
             onClick={() => {
               setCategory(item);
-              setCurrentPage(1); // Reset to first page on filter
+              setCurrentPage(1);
               navigate(`/shop?category=${encodeURIComponent(item)}`);
             }}
             className={category === item ? "active" : ""}
@@ -48,19 +60,35 @@ const Shop = () => {
       </div>
 
       <div className="cards">
-        {paginatedProducts.map((product) => (
-          <div
-            onClick={() => navigate(`/shop/${product.id}`)}
-            style={{ cursor: "pointer" }}
-            className="card"
-            key={product.id}
-          >
-            <img src={img} alt={product.name} />
-            <h2>{product.category}</h2>
-            <h1>{product.title}</h1>
-            <h3>Price: {product.price} EGP</h3>
-          </div>
-        ))}
+        {paginatedProducts.map((product) => {
+          const quantity = getCartQuantity(product.id);
+
+          return (
+            <div className="card" key={product.id}>
+              <img
+                src={img}
+                alt={product.name}
+                onClick={() => navigate(`/shop/${product.id}`)}
+                style={{ cursor: "pointer" }}
+              />
+              <h2>{product.category}</h2>
+              <h1>{product.title}</h1>
+              <h3>Price: {product.price} EGP</h3>
+
+              {quantity > 0 ? (
+                <div className="quantity-controls">
+                  <button onClick={() => decreaseQty(product.id)}>-</button>
+                  <span>{quantity}</span>
+                  <button onClick={() => increaseQty(product.id)}>+</button>
+                </div>
+              ) : (
+                <button className="add-btn" onClick={() => addToCart(product)}>
+                  Add to Cart
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {totalPages > 1 && (

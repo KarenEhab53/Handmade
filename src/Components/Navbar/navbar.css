@@ -1,19 +1,4 @@
-:root {
-    --primary-color: #B87384;
-    /* Main branding color (like "Caramella" text) */
-    --SoftBackground-color: #F8E6E6;
-    /*	Background or section color*/
-    --AccentPink-color: #C99CA8;
-    /*For buttons, hover effects, details*/
-    --NeutralTaupe-color: #9E8C84;
-    /*Used like the needle color in the logo*/
-    --LightCream-color: #FFF7F7;
-    /*Optional lighter background or card areas*/
-    --Text-color: #804D55;
-    /*For headings, darker text*/
-    --Highlight-color: #E3AAB2;
-    /*For small highlights, secondary buttons*/
-}
+
 .navbar {
   display: flex;
   width: 100%;
@@ -94,6 +79,22 @@
 .navbar .cart-mobile {
   display: none;
 }
+.cart {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: crimson;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
 @media (max-width: 768px) {
     .navbar .logo h1{
         font-size: 22px;
