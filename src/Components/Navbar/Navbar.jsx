@@ -10,12 +10,11 @@ import { CartContext } from "../../Context/CartContext";
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCartOpen, setCartOpen] = useState(false);
-  const cartRef = useRef(null); // ✅ for detecting outside clicks
+  const cartRef = useRef(null);
 
   const { cartItems } = useContext(CartContext);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // ✅ Close cart on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isCartOpen && cartRef.current && !cartRef.current.contains(event.target)) {
@@ -50,10 +49,19 @@ const Navbar = () => {
             <button>Contact Us</button>
           </NavLink>
 
+         
+
           <div className="cart-mobile" onClick={() => setCartOpen(true)}>
             View Cart <RiShoppingCartLine />
             {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
           </div>
+        </div>
+
+        {/* Desktop login button */}
+        <div className="login-button">
+          <Link to="/login">
+            <button className="login-btn">Login</button>
+          </Link>
         </div>
 
         <div className="cart desktop" onClick={() => setCartOpen(true)}>
@@ -66,7 +74,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* ✅ Backdrop for outside click */}
       {isCartOpen && (
         <div className="cart-backdrop">
           <div ref={cartRef}>
