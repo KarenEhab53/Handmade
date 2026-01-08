@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./checkout.css";
-import { CartContext } from "../../../Context/CartContext";
-import img from '../../../assets/WhatsApp Image 2025-06-08 at 15.17.26_84cad4e1.jpg';
+import products from "../../../data"; // import your products
 
 const Checkout = () => {
-  const { cartItems, increaseQty, decreaseQty, removeFromCart } = useContext(CartContext);
+  // Local cart state (you can prefill with some products for testing)
+  const [cartItems, setCartItems] = useState([
+    { ...products[0], quantity: 1 },
+    { ...products[1], quantity: 2 },
+  ]);
 
+  // Form state
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,28 +19,70 @@ const Checkout = () => {
     attachment: null,
   });
 
+  // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle file input
   const handleFileChange = (e) => {
     setForm((prev) => ({ ...prev, attachment: e.target.files[0] }));
   };
 
+  // Submit form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
-    // You can replace this with your API submission logic
+    console.log("Order submitted:", form, cartItems);
+    alert("Order submitted! Check console for details.");
+
+    // Reset form and cart
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      note: "",
+      attachment: null,
+    });
+    setCartItems([]);
   };
 
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  // Cart operations
+  const increaseQty = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  // Total price
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="checkout-container">
       <h2>Checkout</h2>
 
       <div className="checkout-content">
+        {/* Cart Summary */}
         <div className="cart-summary">
           <h3>Items in Cart</h3>
           {cartItems.length === 0 ? (
@@ -45,17 +91,36 @@ const Checkout = () => {
             <ul>
               {cartItems.map((item) => (
                 <li key={item.id}>
-                  <img src={img} alt={item.title} />
+                  <img
+                    src={item.image}
+                    alt={item.title || item.name}
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                    }}
+                  />
                   <div style={{ flex: 1 }}>
-                    <h4>{item.title}</h4>
+                    <h4>{item.title || item.name}</h4>
                     <p>Price: {item.price} EGP</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
                       <button onClick={() => decreaseQty(item.id)}>-</button>
                       <span>{item.quantity}</span>
                       <button onClick={() => increaseQty(item.id)}>+</button>
                     </div>
                   </div>
-                  <button onClick={() => removeFromCart(item.id)} className="remove-btn">❌</button>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="remove-btn"
+                  >
+                    ❌
+                  </button>
                 </li>
               ))}
               <h4 className="total-price">Total: {total.toFixed(2)} EGP</h4>
@@ -63,6 +128,7 @@ const Checkout = () => {
           )}
         </div>
 
+        {/* Checkout Form */}
         <form className="checkout-form" onSubmit={handleSubmit}>
           <h3>Shipping Info</h3>
 
@@ -82,7 +148,6 @@ const Checkout = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="email"
             name="email"
@@ -91,7 +156,6 @@ const Checkout = () => {
             onChange={handleChange}
             required
           />
-
           <input
             type="tel"
             name="phone"
@@ -100,7 +164,6 @@ const Checkout = () => {
             onChange={handleChange}
             required
           />
-
           <textarea
             name="note"
             placeholder="Order Note (optional)"
@@ -108,6 +171,7 @@ const Checkout = () => {
             onChange={handleChange}
           />
 
+          {/* File Upload */}
           <div className="file-upload">
             <label htmlFor="attachment" className="file-label">
               {form.attachment ? (
@@ -134,13 +198,21 @@ const Checkout = () => {
             </label>
 
             {form.attachment && (
-             <button onClick={() => removeFromCart(item.id)} className="remove-btn">❌</button>
-
-
+              <button
+                type="button"
+                onClick={() =>
+                  setForm((prev) => ({ ...prev, attachment: null }))
+                }
+                className="remove-btn"
+              >
+                ❌
+              </button>
             )}
           </div>
 
-          <button type="submit" className="submit-btn">Submit Order</button>
+          <button type="submit" className="submit-btn">
+            Submit Order
+          </button>
         </form>
       </div>
     </div>

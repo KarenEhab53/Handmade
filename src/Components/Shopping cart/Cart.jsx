@@ -1,31 +1,28 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./cart.css";
-import { CartContext } from "../../Context/CartContext";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import img from '../../assets/WhatsApp Image 2025-06-08 at 15.17.27_a681c660.jpg';
+import img from "../../assets/WhatsApp Image 2025-06-08 at 15.17.27_a681c660.jpg";
 
-const Cart = ({ isOpen, onClose }) => {
-  const {
-    cartItems,
-    increaseQty,
-    decreaseQty,
-    removeFromCart,
-    clearCart
-  } = useContext(CartContext);
+const Cart = ({ isOpen, onClose, cartItems, setCartItems }) => {
   const navigate = useNavigate();
   const cartRef = useRef();
 
+  // Calculate total price
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  // ✅ Close on outside click
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isOpen && cartRef.current && !cartRef.current.contains(event.target)) {
+      if (
+        isOpen &&
+        cartRef.current &&
+        !cartRef.current.contains(event.target)
+      ) {
         onClose();
       }
     };
@@ -35,9 +32,36 @@ const Cart = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  // Quantity controls
+  const increaseQty = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item
+      )
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <div className="cart-backdrop">
-      <div className={`cart-sidebar open`} ref={cartRef}>
+      <div className="cart-sidebar open" ref={cartRef}>
         <div className="cart-header">
           <h2>Your Cart</h2>
           <AiOutlineClose className="close-icon" onClick={onClose} />
@@ -59,7 +83,10 @@ const Cart = ({ isOpen, onClose }) => {
                   <span>{item.quantity}</span>
                   <button onClick={() => increaseQty(item.id)}>+</button>
                 </div>
-                <button className="remove-single" onClick={() => removeFromCart(item.id)}>
+                <button
+                  className="remove-single"
+                  onClick={() => removeFromCart(item.id)}
+                >
                   <MdDelete />
                 </button>
               </div>
@@ -68,10 +95,13 @@ const Cart = ({ isOpen, onClose }) => {
             <div className="cart-footer">
               <h3>Total: {totalPrice.toFixed(2)} EGP</h3>
               <div className="cart-actions">
-                <button className="checkout-button" onClick={() => {
-                  onClose();
-                  navigate("/checkout");
-                }}>
+                <button
+                  className="checkout-button"
+                  onClick={() => {
+                    onClose();
+                    navigate("/checkout");
+                  }}
+                >
                   Proceed to Checkout
                 </button>
                 <button className="clear-cart-button" onClick={clearCart}>
