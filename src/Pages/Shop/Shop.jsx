@@ -1,42 +1,57 @@
-import React, { useContext, useState } from "react";
-import './shop.css';
-import { ProductContext } from "../../Context/Product";
+import React, { useState } from "react";
+import "./shop.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import img from '../../assets/WhatsApp Image 2025-06-08 at 15.17.27_8cec4d03.jpg';
-import { CartContext } from "../../Context/CartContext";
+import products from "../../data";
 
 const Shop = () => {
-  const { products, loading, error } = useContext(ProductContext);
-  const {
-    cartItems,
-    addToCart,
-    increaseQty,
-    decreaseQty
-  } = useContext(CartContext); // ✅
-
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialCategory = queryParams.get("category") || "All";
+
   const [category, setCategory] = useState(initialCategory);
   const [currentPage, setCurrentPage] = useState(1);
+  const [cartItems, setCartItems] = useState([]);
   const itemsPerPage = 12;
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   const uniqueCategories = ["All", ...new Set(products.map((p) => p.category))];
-  const filteredProducts = category === "All"
-    ? products
-    : products.filter((p) => p.category === category);
+  const filteredProducts =
+    category === "All"
+      ? products
+      : products.filter((p) => p.category === category);
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const getCartQuantity = (id) => {
     const item = cartItems.find((item) => item.id === id);
     return item ? item.quantity : 0;
+  };
+
+  const addToCart = (product) => {
+    setCartItems((prev) => [...prev, { ...product, quantity: 1 }]);
+  };
+
+  const increaseQty = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
   };
 
   return (
@@ -66,7 +81,7 @@ const Shop = () => {
           return (
             <div className="card" key={product.id}>
               <img
-                src={img}
+                src={product.image}
                 alt={product.name}
                 onClick={() => navigate(`/shop/${product.id}`)}
                 style={{ cursor: "pointer" }}
